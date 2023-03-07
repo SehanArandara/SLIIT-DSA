@@ -39,7 +39,7 @@ public class Treex {
 			while(true) {
 				pre = cur;
 				if(id < cur.iData) {
-					cur.leftchild= cur;
+					cur =  cur.leftchild;
 					if(cur==null) {
 						pre.leftchild = newNode;
 						return ;
@@ -47,7 +47,7 @@ public class Treex {
 				}
 				else {
 					if(id>cur.iData) {
-						cur.rightChild = cur;
+						cur = cur.rightChild;
 						if(cur==null) {
 							pre.rightChild = newNode;
 							return ;
@@ -69,4 +69,49 @@ public class Treex {
 		return cur;
 		
 	}
+	public Node maximum() {
+		Node cur =root;
+		while(cur.rightChild!=null) {
+			cur = cur.rightChild;
+		}
+		
+		return cur;
+	}
+	
+	private void inOrder(Node localRoot) {
+		
+		if(localRoot!= null) {
+			inOrder(localRoot.leftchild);
+			localRoot.displayNode();
+			inOrder(localRoot.rightChild);
+		}
+	}
+	public void inOrder() {
+		inOrder(root);
+	}
+	
+	private void preOrder(Node localRoot) {
+		
+		if(localRoot!= null) {
+			localRoot.displayNode();
+			preOrder(localRoot.leftchild);
+			preOrder(localRoot.rightChild);
+		}
+	}
+	public void preOrder() {
+		preOrder(root);
+	}
+	
+	private void postOrder(Node localRoot) {
+		if(localRoot!= null) {
+			
+			postOrder(localRoot.leftchild);
+			postOrder(localRoot.rightChild);
+			localRoot.displayNode();
+		}
+	}
+	public void postOrder() {
+		postOrder(root);
+	}
+	
 }
